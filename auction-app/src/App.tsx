@@ -4,6 +4,10 @@ import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import NotFound from "./components/NotFound";
 import Reset from "./components/Reset";
 import Register from "./pages/register";
+import Login from "./pages/login";
+import Logout from "./pages/logout";
+import UserProfile from "./pages/userProfile";
+import EditProfile from "./pages/editProfile";
 
 function App() {
   return (
@@ -15,6 +19,12 @@ function App() {
               <Route path="*" element={<NotFound/>}/>
                 <Route path="/reset" element={<Reset/>}/>
                 <Route path="/register" element={<Register/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/logout" element={<Logout/>}/>
+
+              {/*  Profile*/}
+                <Route path="/profile" element={<UserProfile/>}/>
+                <Route path="/edit" element={<EditProfile/>}/>
               {/*<Route path="/users-props" element={<SearchBar/>}/>*/}
             </Routes>
           </div>

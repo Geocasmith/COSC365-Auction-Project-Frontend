@@ -8,6 +8,10 @@ type userRegister = {
     email: string,
     password: string
 }
+type Token = {
+    token: string,
+    userId:string
+}
 
 type userLogin = {
     email: string,
