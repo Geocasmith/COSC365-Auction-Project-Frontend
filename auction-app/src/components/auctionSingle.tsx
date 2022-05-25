@@ -14,7 +14,7 @@ interface IAuctionProps {
     auction: Auction
     categories: Array<Category>
 }
-const AuctionListObject = (props: IAuctionProps) => {
+const AuctionSingle = (props: IAuctionProps) => {
     const [auction] = React.useState<Auction>(props.auction)
     const[categories] = React.useState<Array<Category>>(props.categories)
     const [username, setUsername] = React.useState("")
@@ -108,47 +108,47 @@ const AuctionListObject = (props: IAuctionProps) => {
         <Card sx={{ maxWidth: 345 }} >
             {/*TODO: MAKE CARD HEIGHTS SAME*/}
             {/*TODO: UPDATE THIS LINK TO POINT TO INDIVIDUAL AUCTION*/}
-            <CardActionArea href={"/auctions/"+auction.auctionId}>
-            <CardHeader
-                avatar={
-                <Avatar alt={auction.sellerFirstName + " " + auction.sellerLastName} src={getUserImage()}/>
+            <CardActionArea href="https://google.com">
+                <CardHeader
+                    avatar={
+                        <Avatar alt={auction.sellerFirstName + " " + auction.sellerLastName} src={getUserImage()}/>
 
-                }
-                action={
-                    <IconButton aria-label="settings">
+                    }
+                    action={
+                        <IconButton aria-label="settings">
 
-                    </IconButton>
-                }
-                title={auction.sellerFirstName + " " + auction.sellerLastName}
-                subheader={getDaysTillClosing()}
-            />
-            <CardMedia
-                component="img"
-                height="200"
-                width="200"
-                sx={{objectFit:"cover"}}
-                image={getAuctionImage()}
-                alt="User hero image"
-            />
-            <CardContent>
+                        </IconButton>
+                    }
+                    title={auction.sellerFirstName + " " + auction.sellerLastName}
+                    subheader={getDaysTillClosing()}
+                />
+                <CardMedia
+                    component="img"
+                    height="200"
+                    width="200"
+                    sx={{objectFit:"cover"}}
+                    image={getAuctionImage()}
+                    alt="User hero image"
+                />
+                <CardContent>
 
-                <Typography variant="h6">
-                    {auction.title}
-                </Typography>
-                <Typography variant="body1">
-                    {getCategoryName()}
-                </Typography>
-            </CardContent>
+                    <Typography variant="h6">
+                        {auction.title}
+                    </Typography>
+                    <Typography variant="body1">
+                        {getCategoryName()}
+                    </Typography>
+                </CardContent>
                 <Container
-                // Put elements next to each other
-                sx={{display: "flex", justifyContent: "space-between"}}
+                    // Put elements next to each other
+                    sx={{display: "flex", justifyContent: "space-between"}}
                 >
-                {getReserve()}
-                {highestBid()}
+                    {getReserve()}
+                    {highestBid()}
                 </Container>
 
             </CardActionArea>
         </Card>
     )
 }
-export default AuctionListObject
+export default AuctionSingle

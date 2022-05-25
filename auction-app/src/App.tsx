@@ -8,9 +8,10 @@ import Login from "./pages/login";
 import Logout from "./pages/logout";
 import UserProfile from "./pages/userProfile";
 import EditProfile from "./pages/editProfile";
-import AuctionsPage from "./pages/auctionPage";
-import AuctionsList from "./components/auctions";
+import AuctionsPage from "./pages/auctionsPage";
+import AuctionsList from "./components/auctionsList";
 import SearchFilterBar from "./components/searchFilterBar";
+import AuctionPage from "./pages/auction";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
 
               {/*Auctions*/}
               <Route path="/auctions" element={<AuctionsList/>}/>
+              <Route path="/auctions/:id" element={<AuctionPage/>}/>
               <Route path="/search" element={<SearchFilterBar/>}/>
 
 
