@@ -5,7 +5,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useTokenStore} from "../store";
 import AuctionListObject from "../components/auctionListObject";
 
-function AuctionsPage(){
+function AuctionsList() {
     // 12 Column grid system
     const token = useTokenStore(state => state.token)
     const setToken = useTokenStore(state => state.setToken)
@@ -13,11 +13,12 @@ function AuctionsPage(){
     const [errorMessage, setErrorMessage] = React.useState("")
     const navigate = useNavigate();
     const [auctions, setAuctions] = React.useState<Array<Auctions>>([])
+    const[categories, setCategories] = React.useState<Category[]>([])
 
     React.useEffect(() => {
         const getAuctions = () => {
             // @ts-ignore
-            axios.get("http://localhost:4941/api/v1/auctions",{headers:{'X-Authorization':token.token}})
+            axios.get("http://localhost:4941/api/v1/auctions", {headers: {'X-Authorization': token.token}})
                 .then((response) => {
                     setErrorFlag(false)
                     setErrorMessage("")
@@ -29,19 +30,38 @@ function AuctionsPage(){
                     setErrorMessage(error.toString())
                 })
         }
+        const getCategories = () => {
+            axios.get("http://localhost:4941/api/v1/auctions/categories")
+                .then((response) => {
+                    setErrorFlag(false)
+                    setErrorMessage("")
+                    // console.log(response.data)
+                    setCategories(response.data)
+                }, (error) => {
+                    setErrorFlag(true)
+                    setErrorMessage(error.toString())
+                })
+        }
         getAuctions()
+        getCategories()
     }, [token])
 
-    return(
+    return (
         <div>
-            <Grid container spacing={3}>
-                {auctions.map(auction=>(
+            <Grid container alignItems="stretch" spacing={3}>
+                {auctions.map(auction => (
                     //    Pass into prop
                     <Grid item key={auction.auctionId} xs={12} sm={6} md={4} lg={3}>
-                        <AuctionListObject auctionListObject={auction}/>
-                        ))}
+                        <AuctionListObject key={auction.auctionId} auction={auction} categories={categories}/>
 
+
+
+                    </Grid>
+                ))
+                }
             </Grid>
-        </div>)
+        </div>
+    )
 }
-export default AuctionsPage
+
+export default AuctionsList
