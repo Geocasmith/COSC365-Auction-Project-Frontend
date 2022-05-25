@@ -8,6 +8,7 @@ import Login from "./pages/login";
 import Logout from "./pages/logout";
 import UserProfile from "./pages/userProfile";
 import EditProfile from "./pages/editProfile";
+import AuctionsPage from "./pages/auctions";
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               {/*  Profile*/}
                 <Route path="/profile" element={<UserProfile/>}/>
                 <Route path="/edit" element={<EditProfile/>}/>
+
+              {/*Auctions*/}
+              <Route path="/auctions" element={<AuctionsPage/>}/>
+
               {/*<Route path="/users-props" element={<SearchBar/>}/>*/}
             </Routes>
           </div>

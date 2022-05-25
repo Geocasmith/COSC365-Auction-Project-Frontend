@@ -43,17 +43,17 @@ function UserProfile(){
         return(
             <List component="nav" aria-label="mailbox folders">
                 <ListItem>
-                    <ListItemText primary="First Name:" {...user.firstName} />
+                    <ListItemText>First Name: {user.firstName}</ListItemText>
                 </ListItem>
                 <Divider />
 
                 <ListItem>
-                    <ListItemText primary="Last Name:" {...user.lastName} />
+                    <ListItemText>Last Name:{user.lastName}</ListItemText>
                 </ListItem>
                 <Divider />
 
                 <ListItem>
-                    <ListItemText primary="Email:" {...user.lastName} />
+                    <ListItemText>Email:{user.email}</ListItemText>
                 </ListItem>
                 <Divider />
             </List>
