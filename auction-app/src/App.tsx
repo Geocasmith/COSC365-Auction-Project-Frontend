@@ -12,6 +12,8 @@ import AuctionsPage from "./pages/auctionsPage";
 import AuctionsList from "./components/auctionsList";
 import SearchFilterBar from "./components/searchFilterBar";
 import AuctionPage from "./pages/auction";
+import ResponsiveAppBar from "./components/AppBar";
+import UserPhoto from "./pages/userPhoto";
 
 function App() {
   return (
@@ -28,12 +30,18 @@ function App() {
 
               {/*  Profile*/}
                 <Route path="/profile" element={<UserProfile/>}/>
-                <Route path="/edit" element={<EditProfile/>}/>
+                <Route path="/edit_profile" element={<EditProfile/>}/>
+              <Route path="/photo" element={<UserPhoto/>}/>
+
 
               {/*Auctions*/}
-              <Route path="/auctions" element={<AuctionsList/>}/>
+              <Route path="/auctions" element={<AuctionsPage/>}/>
               <Route path="/auctions/:id" element={<AuctionPage/>}/>
               <Route path="/search" element={<SearchFilterBar/>}/>
+
+              {/*App Bar*/}
+              <Route path="/bar" element={<ResponsiveAppBar/>}/>
+
 
 
               {/*<Route path="/users-props" element={<SearchBar/>}/>*/}

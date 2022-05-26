@@ -4,8 +4,20 @@ import {Container, Button, TextField, Typography, List, ListItem, ListItemText, 
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {useTokenStore} from "../store";
 import AuctionListObject from "../components/auctionListObject";
+interface IAuctionProps {
+    q: String
+    categoryIds: Array<number>
+    sortBy: String
+    state: String
+}
+// @ts-ignore
+const AuctionsList = (props: IAuctionProps) => {
+    //bring in props
+    const[q]= React.useState<String>(props.q)
+    const[categoryIds]= React.useState<Array<number>>(props.categoryIds)
+    const[sortBy]= React.useState<String>(props.sortBy)
+    const[state]= React.useState<String>(props.state)
 
-function AuctionsList() {
     // 12 Column grid system
     const token = useTokenStore(state => state.token)
     const setToken = useTokenStore(state => state.setToken)
@@ -15,15 +27,29 @@ function AuctionsList() {
     const [auctions, setAuctions] = React.useState<Array<Auctions>>([])
     const[categories, setCategories] = React.useState<Category[]>([])
 
+    function formatCategoryIds(categoryIds: Array<number>){
+        let formattedCategoryIds = ""
+        for(let i = 0; i < categoryIds.length; i++){
+            formattedCategoryIds += "&categoryIds="+categoryIds[i]
+        }
+        console.log(formattedCategoryIds)
+        return formattedCategoryIds
+    }
     React.useEffect(() => {
+        //Formats request params for auctions to return based on the props given
+        const createRequestParams = () => {
+            let params = "q="+q+"&sortBy="+sortBy+formatCategoryIds(categoryIds)
+            // console.log(params)
+            return params
+        }
+
         const getAuctions = () => {
             // @ts-ignore
-            axios.get("http://localhost:4941/api/v1/auctions", {headers: {'X-Authorization': token.token}})
+            axios.get("http://localhost:4941/api/v1/auctions?"+createRequestParams())
                 .then((response) => {
                     setErrorFlag(false)
                     setErrorMessage("")
                     setAuctions(response.data.auctions)
-
 
                 }, (error) => {
                     setErrorFlag(true)
@@ -48,7 +74,7 @@ function AuctionsList() {
 
     return (
         <div>
-            <Grid container alignItems="stretch" spacing={3}>
+            <Grid container alignItems="stretch" spacing={3} sx={{ flexDirection: 'row'}} >
                 {auctions.map(auction => (
                     //    Pass into prop
                     <Grid item key={auction.auctionId} xs={12} sm={6} md={4} lg={3}>

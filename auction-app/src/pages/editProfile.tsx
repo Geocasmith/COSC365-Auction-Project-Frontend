@@ -4,9 +4,10 @@ import {Container, Button, TextField,Typography,InputAdornment} from "@mui/mater
 import {Link, useNavigate, useParams} from 'react-router-dom'
 import classes from "*.module.css";
 import {useTokenStore} from "../store";
+import ResponsiveAppBar from "../components/AppBar";
 
 
-function editProfile(){
+function EditProfile(){
     const [user,setUser] =  React.useState<userPatch>({
         firstName: ""
         , lastName: ""
@@ -40,15 +41,17 @@ function editProfile(){
     }
 
     return(
+        <><ResponsiveAppBar/>
         <Container>
 
 
+
             <Typography
-                variant={'h3'}
+                variant={'h2'}
                 color={'primary'}
 
             >
-                Register
+                Update Details
             </Typography>
 
             <form onSubmit={editUser}>
@@ -59,6 +62,8 @@ function editProfile(){
                     color={'secondary'}
                     fullWidth
                     required
+                    style={{marginBottom:10}}
+
                 />
 
                 <TextField
@@ -68,6 +73,8 @@ function editProfile(){
                     color={'secondary'}
                     fullWidth
                     required
+                    style={{marginBottom:10}}
+
                 />
 
 
@@ -78,6 +85,8 @@ function editProfile(){
                     color={'secondary'}
                     fullWidth
                     required
+                    style={{marginBottom:10}}
+
                 />
 
                 <TextField
@@ -89,6 +98,8 @@ function editProfile(){
                     inputProps={{ minLength: 6 }}
                     fullWidth
                     required
+                    style={{marginBottom:10}}
+
 
                     helperText={errorFlag ? errorMessage : ""}
                 />
@@ -102,19 +113,31 @@ function editProfile(){
                     inputProps={{ minLength: 6 }}
                     fullWidth
                     required
+                    style={{marginBottom:5}}
+
 
                     helperText={errorFlag ? errorMessage : ""}
                 />
 
                 <Button
+                    sx={{ m: 0.5, p:2}}
                     type="submit"
                     variant={'contained'}
                     color={'primary'}>
-                    Register
+                    Update
+
+                </Button>
+                <Button
+                    sx={{ m: 0.5, p:2 }}
+                    href={'/profile'}
+                    variant={'contained'}
+                    color={'primary'}>
+                    Cancel
                 </Button>
             </form>
 
         </Container>
+            </>
     )
 }
-export default editProfile
+export default EditProfile

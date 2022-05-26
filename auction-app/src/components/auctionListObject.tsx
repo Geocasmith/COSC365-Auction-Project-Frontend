@@ -45,7 +45,7 @@ const AuctionListObject = (props: IAuctionProps) => {
     }
     const getCategoryName = () => {
         //TODO FIX categories being empty
-        console.log(categories)
+        // console.log(categories)
         if(categories.length > 0) {
             // @ts-ignore
             return "Category"
@@ -105,13 +105,13 @@ const AuctionListObject = (props: IAuctionProps) => {
     // @ts-ignore
     // @ts-ignore
     return (
-        <Card sx={{ maxWidth: 345 }} >
+        <Card sx={{ maxWidth: 345,display: 'flex' }} >
             {/*TODO: MAKE CARD HEIGHTS SAME*/}
             {/*TODO: UPDATE THIS LINK TO POINT TO INDIVIDUAL AUCTION*/}
             <CardActionArea href={"/auctions/"+auction.auctionId}>
             <CardHeader
                 avatar={
-                <Avatar alt={auction.sellerFirstName + " " + auction.sellerLastName} src={getUserImage()}/>
+                <Avatar src={getUserImage()}/>
 
                 }
                 action={
